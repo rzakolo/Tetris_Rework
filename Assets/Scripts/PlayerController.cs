@@ -20,21 +20,24 @@ public class PlayerController : MonoBehaviour
         {
             isActive = false;
         }
-        if (Input.GetKeyDown(KeyCode.D) && isActive)
+        if (isActive)
         {
-            transform.Translate(horizontal, Space.World);
-        }
-        if (Input.GetKeyDown(KeyCode.A) && isActive)
-        {
-            transform.Translate(-horizontal, Space.World);
-        }
-        if (Input.GetKeyDown(KeyCode.S) && isActive)
-        {
-            transform.Translate(vertical, Space.World);
-        }
-        if (Input.GetKeyDown(KeyCode.Space) && isActive)
-        {
-            transform.RotateAround(transform.position, new Vector3(0, 0, 1), -90);
+            if (Input.GetKeyDown(KeyCode.D))
+            {
+                transform.Translate(horizontal, Space.World);
+            }
+            if (Input.GetKeyDown(KeyCode.A))
+            {
+                transform.Translate(-horizontal, Space.World);
+            }
+            if (Input.GetKeyDown(KeyCode.S) && transform.position.y-1 >= -5)
+            {
+                transform.Translate(vertical, Space.World);
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                transform.RotateAround(transform.position, new Vector3(0, 0, 1), -90);
+            }
         }
     }
 }

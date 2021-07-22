@@ -22,7 +22,7 @@ public class SpawnManager : MonoBehaviour
     {
         if (gameManager.isBlockDelivered)
         {
-            Instantiate(blockPrefabs[Random.Range(0, 2)], new Vector3(0, 12, 0), transform.rotation);
+            Instantiate(blockPrefabs[Random.Range(0, 2)], new Vector3(0, 6, 0), transform.rotation);
             //Instantiate(blockPrefabs[2], new Vector3(0, 200, -2), transform.rotation);
             gameManager.isBlockDelivered = false;
         }

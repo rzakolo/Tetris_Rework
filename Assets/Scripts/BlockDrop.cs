@@ -7,7 +7,7 @@ public class BlockDrop : MonoBehaviour
     [SerializeField] float blockSpeed;
     [SerializeField] GameManager gameManager;
     Rigidbody2D blockRb;
-    bool stopBlock = true;
+    bool moveBlock = true;
     void Start()
     {
         gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -23,13 +23,13 @@ public class BlockDrop : MonoBehaviour
             blockRb.AddForce(Vector3.down * blockSpeed * Time.deltaTime);
         }
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag != "Background" && stopBlock)
+        if (collision.gameObject.tag != "Background" && moveBlock)
         {
             gameManager.isBlockDelivered = true;
-            stopBlock = false;
+            moveBlock = false;
         }
-
     }
+
 }
