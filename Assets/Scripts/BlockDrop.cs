@@ -18,9 +18,9 @@ public class BlockDrop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!gameManager.isBlockDelivered)
+        if (!gameManager.isBlockDelivered && moveBlock)
         {
-            blockRb.AddForce(Vector3.down * blockSpeed * Time.deltaTime);
+            transform.Translate(Vector3.down * blockSpeed * Time.deltaTime, Space.World);
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
