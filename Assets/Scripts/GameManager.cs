@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
     public float blockSpeed;
     public bool isGameStart = true;
     public bool isBlockDelivered = true;
+    public GameObject block;
     void Start()
     {
         
