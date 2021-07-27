@@ -58,6 +58,7 @@ public class BlockController : MonoBehaviour
             }
             CheckLines();
         }
+        ClearFullyDestroyedObject();
     }
     void AddToTable()
     {
@@ -66,6 +67,14 @@ public class BlockController : MonoBehaviour
             int roundedX = Mathf.RoundToInt(item.transform.position.x);
             int roundedY = Mathf.RoundToInt(item.transform.position.y);
             table[roundedX, roundedY] = item;
+            if (table[5, 18] != null) { gameManager.GameOver(); }
+        }
+    }
+    void ClearFullyDestroyedObject()
+    {
+        if (gameObject.CompareTag("Block") && transform.childCount == 0)
+        {
+            Destroy(gameObject);
         }
     }
     void CheckLines()
@@ -109,6 +118,7 @@ public class BlockController : MonoBehaviour
             Destroy(table[j, line].gameObject);
             table[j, line] = null;
         }
+        gameManager.AddScore();
     }
 
     bool ValidMove()

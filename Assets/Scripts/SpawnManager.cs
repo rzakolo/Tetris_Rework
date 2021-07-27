@@ -7,18 +7,20 @@ public class SpawnManager : MonoBehaviour
 
     [SerializeField] GameObject[] blockPrefabs;
     [SerializeField] GameManager gameManager;
+    private GameObject currentBlock;
 
     void Start()
     {
-        InvokeRepeating(nameof(SpawnBlock), 0, 6);
+        InvokeRepeating(nameof(SpawnBlock), 0, 3);
+        currentBlock = blockPrefabs[Random.Range(0, blockPrefabs.Length)];
     }
     void SpawnBlock()
     {
-        if (gameManager.isBlockDelivered)
+        if (gameManager.isBlockDelivered && !gameManager.isGameOver)
         {
-            GameObject currentBlock = blockPrefabs[Random.Range(0, 3)];
             Instantiate(currentBlock, transform.position, transform.rotation);
-            //Instantiate(blockPrefabs[2], new Vector3(0, 200, -2), transform.rotation);
+            currentBlock = blockPrefabs[Random.Range(0, blockPrefabs.Length)];
+            gameManager.Block = currentBlock;
             gameManager.isBlockDelivered = false;
         }
     }
